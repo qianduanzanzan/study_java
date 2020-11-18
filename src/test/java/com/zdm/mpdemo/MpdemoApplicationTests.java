@@ -1,5 +1,6 @@
 package com.zdm.mpdemo;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zdm.mpdemo.bean.User;
@@ -84,6 +85,18 @@ public class MpdemoApplicationTests {
     public void ljDelete() {
         int i = userMapper.deleteById(2L);
         System.out.println(i);
+    }
+
+    //条件查询
+    @Test
+    public void testWapperQuery(){
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+
+        wrapper.ge("age",23);
+
+        List<User> users = userMapper.selectList(wrapper);
+        System.out.println(users);
+
     }
 
 }
